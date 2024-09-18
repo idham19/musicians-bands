@@ -85,7 +85,16 @@ describe("Band, Musician, and Song Models", () => {
 
   test("can delete a Musician", async () => {
     // TODO - test deleting a musician
-   
-    expect("NO TEST").toBe("EXPECTED VALUE HERE");
+    const testMusician = await Musician.create({
+        name: "bob",
+        instrument: "guitar",
+      });
+      const deletMusician = await testMusician.destroy()
+    expect(deletMusician).toEqual(
+        expect.objectContaining({
+            name: "bob",
+            instrument: "guitar",
+        })
+      );;
   });
 });
