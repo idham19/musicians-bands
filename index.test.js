@@ -1,7 +1,7 @@
 const { sequelize } = require("./db");
 const { Band, Musician, Song } = require("./index");
 
-describe("Band, Musician, and Song Models", () => {
+describe("Band, Musician, and Song Models",() => {
   /**
    * Runs the code prior to all tests
    */
@@ -9,7 +9,11 @@ describe("Band, Musician, and Song Models", () => {
     // the 'sync' method will create tables based on the model class
     // by setting 'force:true' the tables are recreated each time the
     // test suite is run
-    await sequelize.sync({ force: true });
+    // await sequelize.sync({ force: true });
+    Band.destroy({where:{}})
+    Musician.destroy({where:{}})
+    Song.destroy({where:{}})
+  
   });
 
   test("can create a Band", async () => {
@@ -97,4 +101,29 @@ describe("Band, Musician, and Song Models", () => {
         })
       );;
   });
+ test("test Band can have many musicians",async()=>{
+const band = await Band.create({
+name:"Koulech",
+genre:"tmesskhire",
+showCount:10
+})
+const musician1= await Musician.create({
+  name:"moh",
+  intrument:"darboka",
+  BandId:band.id
+ })
+ const musician2= await Musician.create({
+  name:"missipssa",
+  intrument:"avendayer",
+  BandId:band.id
+ })
+
+ const foundBand =await Band.findOne({where:{id:band.id},include:Musician})
+ expect(await foundBand.Musicians.length).toBe(2)
+ expect(await foundBand.Musicians[0].name).toBe("moh")
+ expect(await foundBand.Musicians[1].name).toBe("missipssa")
+ })
+
+
+
 });

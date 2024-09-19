@@ -25,12 +25,12 @@ const myBand = new Band({
     showCount: 2000,
   });
   
-  const bandString = myBand.toString();
-  console.log(bandString); 
-const band1=Band.findByPk(2).then(data=>{
-    console.log(data.toString())
-});
-;
+//   const bandString = myBand.toString();
+//   console.log(bandString); 
+// const band1=Band.findByPk(2).then(data=>{
+//     console.log(data.toString())
+// });
+// ;
 
 
 module.exports = {

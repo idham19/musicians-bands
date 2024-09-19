@@ -12,6 +12,17 @@ instrument:DataTypes.STRING
     modelName:"Musician"
 })
 
+// const musicien = await new Musician({
+//     name:"fd",
+//     instrument:'dfs'
+// })
+
+// sequelize.sync().then(()=>{
+//     Musician.create()
+// })
+
+    
+
 module.exports = {
     Musician
 };

@@ -8,11 +8,12 @@ class Song extends Model {
     return `Music duration in minute is : ${toMinute} minutes`;
   }
 
-  static async getLongestSong() {
-    return await Song.findOne({
-      order: [["length", "DESC"]], // Find the song with the l
-    });
-  }
+  // static async getLongestSong() {
+  //   return await Song.findOne({
+  //     order: [["length", "DESC"]], // Find the song with the l
+  //   });
+  // }
+
 }
 
 
@@ -33,9 +34,12 @@ const song1 = new Song({
   length: 190,
 });
 
-Song.getLongestSong().then((song) => {
-    console.log(song);
-  });
+// Song.getLongestSong().then((song) => {
+//     console.log(song);
+//   });
+// sequelize.sync().then(()=>{
+//   Song.create()
+// })
 
 module.exports = {
   Song,
