@@ -149,4 +149,21 @@ describe("Band, Musician, and Song Models", () => {
     });
     expect(foundBand.Songs.length).toBe(2);
   });
+  test("Test Song can have many Bands", async () => {
+    const song1 = await Song.create({
+      title: "a3yighe",
+      year: 2028,
+      length: 190,
+    });
+    const band1 = await Band.create();
+    const band2 = await Band.create();
+    await song1.addBand(band1);
+    await song1.addBand(band2);
+
+    const foundSong = await Song.findOne({
+      where: { id: song1.id },
+      include: Band,
+    });
+    expect(foundSong.Bands.length).toBe(2);
+  });
 });
